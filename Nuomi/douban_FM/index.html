@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0; padding: 0;}
+			ul{list-style: none;}
+
+			.container{
+				border: 1px solid #ccc;
+				width: 500px;
+				height: 150px;
+				margin: 20px auto;
+				position: relative;
+			}
+			
+			/*左边的盒子*/
+			.left{
+				width: 310px;
+				height: 125px;
+				background-color: #fafafa;
+				float: left;
+				position: relative;
+			}
+			/*文字缩进6px*/
+			.left .title, .left .singer{
+				padding-left: 6px;
+			}
+			.left .title{
+    			font-weight: 500;
+				width: 310px;
+				height: 50px;
+				/*background-color: greenyellow;*/
+				line-height: 50px;
+				font: 18px/50px "微软雅黑";
+				
+				overflow: hidden;
+				white-space: nowrap; /*2个span在同一行*/
+			}
+			.left .title span {
+			    display: inline-block;
+			    width: 100%;
+			    white-space: nowrap;
+			    overflow: hidden;
+			}
+
+			.left .singer{
+				width: 310px;
+				height: 35px;
+				line-height: 35px;
+				/*background-color: #005EA5;*/
+				font: 16px/35px "微软雅黑";
+			}
+			
+			/*播放列表*/
+			.container .musicList{
+				position: absolute;
+				bottom: -5px;
+				right: 0;
+				width: 30px;
+				height: 30px;
+				/*background-color: pink;*/
+			}
+			.container .musicList .listLeft{
+				/*背景图片宽高都是32px*/
+				width: 20px;
+				height: 20px;
+				margin: 6px;
+				background-color: blue;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				background: url(img/music-list.png) no-repeat;
+				background-size: contain;
+			}
+			
+			/*播放列表, 不包含在 container 盒子中……*/
+			.listRight{
+				width: 250px;
+				height: 153px;
+				/*background-color: pink;*/
+				position: absolute;
+				margin-top: -172px;
+				left: 0;
+			}
+			#ul{
+				display: none;
+				background-color: #FAFAFA;
+				border: 1px dotted #ccc;
+			}
+			#list{
+				font: 18px/30px "微软雅黑";
+				text-align: center;
+				display: block;
+				border-bottom: 1px solid #ccc;
+			}
+			#ul li{
+				text-align: center;
+				height: 26px;
+				line-height: 32px;
+				/*border: 1px dotted #ccc;*/
+				margin-top: -1px;
+				font: 14px/25px "微软雅黑";
+			}
+			
+			/*audio 标签*/
+			.container audio{
+				width: 310px;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+			}
+			
+			
+			/*专辑页面*/
+			.right{
+				width: 190px;
+				height: 124px; /*包含img上下各2px的margin*/
+				background-color: #fafafa;
+				float: left;
+			}
+			
+			/*转动的图片及转动设置*/
+			.circle{
+			    height: 120px;
+			    width: 120px;
+			    margin: 2px auto;
+			    border-radius: 50%;
+			    -webkit-animation: an1 6s infinite linear;
+			    -o-animation: an1 6s infinite linear;
+			    animation: an1 6s infinite linear;
+			   animation-iteration-count: infinite;
+			   /*刚开始设置图片在转动*/
+			}
+			.circle img{
+				width: 120px;
+				height: 120px;
+				background-color: green;
+				margin: 0px auto;
+				border-radius: 100%;
+				background: url("img/music-img/img1.png") no-repeat;
+			}
+			@keyframes an1 {
+				0% {
+				    transform: rotate(0deg);
+				}
+				20% {
+				    transform: rotate(72deg);
+				}
+				40% {
+				    transform: rotate(144deg);
+				}
+				60% {
+				    transform: rotate(216deg);
+				}
+				80% {
+				    transform: rotate(288deg);
+				}
+				100% {
+				    transform: rotate(360deg);
+				}
+			}
+			
+			/*播放控制*/
+			.ctr{
+				background-color: #fafafa;
+				width: 492px; /*500px*/
+				height: 25px; /*32px*/
+				float: left;
+				padding: 6px 0 0 8px;
+				border: 1px solid #ccc;
+				border-top: none;
+				margin-left: -1px; 
+			}
+			.ctr button{
+				width: 40px;
+				height: 20px;
+				line-height: 12px;
+				margin-right: 4px;
+				border: none;
+				background-color: #FAFAFA;
+			}
+			
+			/*现在播放的歌曲*/
+			#nowPlay{
+				float: right;
+				margin-right: 35px;
+				font: 16px/20px "微软雅黑";
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container" id="container">
+			<div class="left">
+				<div class="title">
+					<span>夜空中最亮的星</span>
+				</div>
+				<div class="singer">逃跑计划</div>
+
+				<audio controls="controls" autoplay="autoplay" id="vvideo">
+					<source src="music/1.mp3"></source>
+				</audio>
+			</div>
+			
+			<!--专辑页面-->
+			<div class="right">
+				<div class="circle">
+					<img src="img/music-img/img1.png" />
+				</div>
+			</div>
+			
+			<!--控制按钮-->
+			<div class="ctr">
+				<button id="btn_play">Play</button>
+				<button id="btn_pause">Pause</button>
+				<button id="btn_stop">Stop</button>
+				<button id="btn_prev">Prev</button>
+				<button id="btn_next">Next</button>
+				
+				<div id="nowPlay">
+					现在播放的是：第
+					<span></span>
+					首歌 ...
+				</div>
+				
+				<!--播放列表：左边的按钮和右边的ul列表-->
+				<div class="musicList">
+					<div class="listLeft" id="listLeft"></div>
+				</div>				
+			</div>
+
+		</div>
+		
+		<!--ul歌曲列表-->
+		<div class="listRight" id="listRight">
+				<ul id="ul">
+					<span id="list">播放列表</span>
+				</ul>
+		</div>
+		
+		
+		<script src="js/jquery.min.js"></script>
+		<script>
+			var container_img= $('.circle')
+			
+			//图片转动函数
+			function img_animation() {
+				container_img.css({
+					"animation-iteration-count": "infinite"
+				})
+				getData();
+			};
+			function img_animation_no() {
+				container_img.css({
+				    "animation-iteration-count": 0
+				})
+			}
+		</script>
+		
+		<script>
+			//控制歌曲列表的位置
+			function jj(id){return document.getElementById(id)}
+			var container= jj("container")
+			var listRight= jj("listRight")
+			function aa(){
+				var leftVal= container.offsetLeft+ 503;
+				listRight.style.left= leftVal +'px'
+			}
+			aa();
+			window.onresize= aa;
+		</script>
+		<script>
+			//显示或隐藏播放列表
+			function show_Hidden(obj){
+				 if(obj.style.display=="block"){
+				    obj.style.display='none';
+				 }else{
+				  obj.style.display='block';
+				 }
+			}
+			var ul= document.getElementById('ul')
+			var listLeft= document.getElementById('listLeft')
+			
+			function jj(id){return document.getElementById(id)}
+			var vvideo= jj('vvideo')
+			var btn_play= jj('btn_play')
+			var btn_pause= jj('btn_pause')
+			var btn_stop= jj('btn_stop')
+			var btn_next= jj('btn_next')
+			var btn_prev= jj('btn_prev')
+			var nowPlay= jj('nowPlay')
+			
+			nowPlay.children[0].innerHTML= 1;
+
+		
+			//播放结束时自动切换下一首歌曲……
+			//ended事件
+			vvideo.addEventListener('ended',function(){
+				vvideo.pause();
+				vvideo.src=playList.list[playList.current+1];
+				vvideo.play()
+			}, false)
+			
+			//关联播放列表
+			var lis= ul.children;
+
+			getData();
+			
+			//播放列表的地址数组。ul显示与隐藏
+			var playList = {
+			    current : 0,
+			    list : []
+			}
+			listLeft.onclick= function(){
+				show_Hidden(ul);
+				//实时获得offsetLeft
+				aa();
+				return false;
+			}
+			
+			//播放按钮
+			btn_play.onclick= function(){
+				vvideo.play();
+				img_animation();
+			}
+			btn_pause.onclick= function(){
+				vvideo.pause();
+				img_animation_no();
+			}
+			btn_stop.onclick= function(){
+				vvideo.currentTime= 0;
+				vvideo.pause();
+				img_animation_no();
+			}
+			btn_prev.onclick= function(){
+				if(playList.current == 0){ 
+			        playList.current = playList.list.length-1;
+			    }else{
+			        playList.current--;
+			    }
+			    console.log(playList.current+1);
+				nowPlay.children[0].innerHTML= playList.current+1;
+			    
+			    vvideo.src=playList.list[playList.current];
+			    vvideo.play();
+			    
+			    getData();
+			    img_animation();
+			}
+			btn_next.onclick= function(){
+				if(playList.current == playList.list.length-1){
+			        playList.current = 0;
+			    }else{
+			        playList.current++;
+			    }
+			    console.log(playList.current+1);
+				nowPlay.children[0].innerHTML= playList.current+1;
+			    
+			    vvideo.src=playList.list[playList.current];
+			    vvideo.play();
+			    
+			    getData();
+			    img_animation();
+			}
+			
+			
+			//title和singer
+			var container= jj('container');
+			var title= container.children[0].children[0].children[0]
+			var singer= container.children[0].children[1]
+			console.log(title.innerHTML)
+			console.log(singer.innerHTML)
+			var img= container.children[1].children[0].children[0]
+			
+			
+			//初始化，获得数值
+			function getData() {
+				//从 js文件 载入 JSON 数据
+				$.getJSON("package.json", function(json){
+					$.each(json, function(i, value){
+						console.log(json)
+						console.log(i);//music_ifo
+						console.log(value)
+						
+						console.log(value[0].name);//刚好遇见你
+						console.log(value[0].from);//李玉刚
+						
+						title.innerHTML= value[playList.current].name
+						singer.innerHTML= value[playList.current].from
+						img.src= value[playList.current].img
+						
+
+						//关联播放列表
+						var lis= ul.children;
+						lis.len= i.length+1; //10首歌曲
+						console.log(lis.len)
+						
+
+						//设置条件，不能每次调用就增加10个空li标签……
+						if(lis.length<lis.len){
+							for(var j=0; j<lis.len; j++){
+								//动态生成ul列表
+								var num_li= document.createElement('li')
+								ul.appendChild(num_li)
+								
+								lis[j+1].innerHTML= value[j].name+' '+ value[j].from
+								
+								//playList.list在上面是数组对象，动态生成！！
+								playList.list.push(value[playList.current+j].src1)
+								console.log(playList.list)
+							}
+						}
+						ctrl_Color();
+					})
+				});
+			}
+			
+			//正在播放的歌曲颜色设置
+			function ctrl_Color(){
+				for(var i=0; i<=lis.len; i++){
+					lis[i].style.color= '#000'
+					lis[i].style.fontSize= '14px'
+				}
+				lis[playList.current+1].style.color= 'green'
+				lis[playList.current+1].style.fontSize= '16px'
+				lis[0].style.fontSize= '18px'
+			}
+
+		</script>
+	</body>
+</html>
