@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0; padding: 0;}
+			.box{
+				position: absolute;
+				top: 10px;
+				left: 50%;
+				width: 500px;
+				height: 100px;
+				margin-left: -250px;
+			}
+			.notice{
+			    margin-top: 10px;
+			    display: inline-block;
+			}
+			.succ{
+			    color: #1def82;
+			}
+			.warning{
+			    color: #ffbf6d;
+			}
+			.error{
+			    color: #fc406a;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="one" id="one">
+				<p>任务一：编写一个判断给定数字是否为手机号码的正则表达式</p><br />
+				<input type="text" placeholder="请输入手机号" id="inp1" />
+				<button value="确认">确认</button><br />
+				<span></span>
+				<br /><br />
+			</div>
+			<div class="two" id="two">
+				<p>任务二：编写一个判断输入的字符串是否有相邻重复单词</p><br />
+				<input type="text" placeholder="请输入一段英文"/>
+				<button value="确认">确认</button><br />
+				
+				<span></span>
+				<br /><br />
+			</div>
+		</div>
+		
+		<script>
+//		获取节点
+//		提醒话术
+//		事件绑定
+//		函数：
+//		    验证号码
+//		    验证重复
+//		    失败提示
+		
+		var one= document.getElementById("one")
+		var two= document.getElementById("two")
+		
+		var inps= document.getElementsByTagName("input")
+		var btns= document.getElementsByTagName("button")
+		var notices = document.getElementsByTagName('span');
+		console.log(notices)
+
+		var tast1 = {
+		    warning:'手机号码应为11位纯数字',
+		    error:'请输入正确的手机号',
+		    succ:'手机号码正确'
+		};
+		var tast2 = {
+		    warning: '有重复单词但是不相邻',
+		    error:'出现相邻且重复单词！',
+		    succ:'没有重复单词'
+		};
+		
+		btns[0].addEventListener('click', testPhoneNum);
+		btns[1].addEventListener('click', testStrRepeat);
+		
+		
+		//验证号码
+		function testPhoneNum(e){
+			e.preventDefault();
+			var num = inps[0].value;
+			var result_1 = /^\d{11}$/.test(num);
+			if (!result_1){
+				return testNotice(notices[0],'warning');
+			}
+			
+			var reg=/^1(3|4|5|8)\d{9}$/;
+			var result_2 = reg.test(num);
+			return result_2?testNotice(notices[0],'succ'):testNotice(notices[0],'error');
+		}
+		
+		
+		//回复信息。对象node, type(类名，也是属性名！)
+		function testNotice(node,type) {
+		    node.className ='notice '+ type;
+		    //添加2个class
+		    
+		    node.innerHTML= node===notices[0]?tast1[type]:tast2[type];
+		    console.log(tast1[type])
+		}
+
+
+		//验证重复
+		function testStrRepeat(e) {
+		    e.preventDefault();
+		    //用空格分割句子，让每个单词成为数组中的一个项
+		    var sentence=inps[1].value;
+		    var result=sentence.match(/([A-Za-z]+)/g);
+		    var obj={},
+		        repeat=false,//是否有重复
+		        close=false;//是否重复
+		        
+		    //输入为空直接返回无重复
+		    sentence&&result.forEach(function (value,index) {
+		        if(value===''){
+		            return;
+		        }
+		        if(obj[value]!=undefined){
+		            var distance=index-obj[value];
+		            //如果与前一个重复，标记为重复
+		            if(distance===1){
+		                close=1;
+		            }
+		            repeat=true;
+		        }else{
+		            obj[value]=index;
+		        }
+		    });
+		    if(!repeat){
+		        return testNotice(notices[1],'succ')
+		    }else {
+		        close?testNotice(notices[1],'error'):testNotice(notices[1],'warning')
+		    }
+		}
+		</script>
+	</body>
+</html>
