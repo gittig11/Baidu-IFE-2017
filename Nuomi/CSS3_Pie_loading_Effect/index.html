@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+			    background: #282828;
+			    line-height: 1;
+			}
+			* {
+			    margin: 0;
+			    padding: 0;
+			    border: 0;
+			    vertical-align: baseline;
+			}
+			
+			/*3/4圆环*/
+			.ring {
+			    width: 180px;
+			    height: 180px;
+			    margin: -100px 0px 0px -100px;
+			    border-radius: 50%;
+			    background-color: transparent;
+			    border: 2px solid #F9D64A;
+			    border-right-color: transparent;
+			    animation: ring 0.8s linear infinite;
+			}
+			/*背景色*/
+			.background{
+				width: 0px;
+				height: 0px;
+			    margin: -70px 0px 0px -70px;
+	            border-radius: 50%;
+			    border: 60px solid orange;
+	            border-left-color: pink;
+	            border-bottom-color: pink;
+	            animation: bg 3.5s linear infinite;
+	            
+	            z-index: 1;
+			}
+			
+
+			.ring1 {
+			    margin: -70px 0px 0px -70px;
+			    border-radius: 50%;
+			    border: 60px solid orange;
+			    border-right-color: transparent;
+			    border-top-color: transparent;
+			    animation: ring1 3.5s linear infinite; 
+			    z-index: 2;
+			}
+			.ring2 {
+			    margin: -70px 0px 0px -70px;
+			    border-radius: 50%;
+			    border: 60px solid pink;
+			    border-left-color: transparent;
+			    border-bottom-color: transparent;
+			    animation: ring2 3.5s linear infinite; 
+			    z-index: 2;
+			}
+			.background, .ring, .ring1, .ring2{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+			}
+			
+			
+			@keyframes ring{
+				0%{
+					transform: rotate(0deg);
+				}
+				100%{
+					transform: rotate(360deg);
+				}
+			}
+
+			@keyframes bg{
+				0%{
+					transform: rotate(0deg);
+				}
+				75%{
+					transform: rotate(0deg);
+					/*第三个半圈时背景跟着转，这样橙色能再次100%*/
+				}
+				100%{
+					transform: rotate(180deg);
+				}
+			}
+			@keyframes ring1{
+				0%{
+					transform: rotate(0deg);
+				}
+				25%{
+					transform: rotate(180deg);
+				}
+				50%{
+					transform: rotate(180deg);
+				}
+				
+				
+				75%{
+					transform: rotate(360deg);
+					z-index: 2;
+				}
+				
+				75.001%{
+					transform: rotate(360deg);
+					z-index: 4;
+				}
+				100%{
+					transform: rotate(540deg);
+					z-index: 4;
+				}
+			}
+			@keyframes ring2{
+				0%{
+					transform: rotate(0deg);
+					z-index: 0;
+				}
+				25%{
+					transform: rotate(180deg);
+					z-index: 0;
+				}
+				/*不要覆盖橙色背景*/
+				
+				25.001%{
+					transform: rotate(180deg);
+					z-index: 2;
+				}
+				50%{
+					transform: rotate(360deg);
+					z-index: 2;
+				}
+				
+				75%{
+					transform: rotate(360deg);
+					z-index: 2;
+				}
+				75.001%{
+					transform: rotate(360deg);
+					z-index: 2;
+				}
+				100%{
+					transform: rotate(360deg);
+					z-index: 2;
+				}
+			}
+		</style>
+		<link rel="stylesheet href="demo3.css" />
+	</head>
+	<body>
+		<div class="ring"></div>
+		
+		<div class="background"></div>
+		
+		<div class="ring1"></div>
+		
+		<div class="ring2"></div>
+	</body>
+</html>
