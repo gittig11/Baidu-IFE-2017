@@ -428,5 +428,17 @@
 			}
 
 		</script>
+		<script>
+			//播放结束后自动切换下一首
+			window.onload= function(){
+				var timer= vvideo.duration;
+				console.log(timer+'hehe')
+				console.log(document.getElementsByTagName("audio")[0].duration)
+				
+				vvideo.addEventListener('ended',function(){
+					next();
+				});
+			}
+		</script>			
 	</body>
 </html>
