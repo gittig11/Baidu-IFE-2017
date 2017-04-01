@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0; padding: 0;}
+			.box{
+				width: 300px;
+				height: 200%;
+				margin: 10px auto;
+				padding: 20px 0 20px 0;
+			}
+
+			.ban{
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				margin-bottom: 10px;
+				background-color: #eee;
+				overflow: hidden;
+				width: 290px;
+			}
+			label{
+				padding-left: 10px;
+			}
+			
+			/*input不显示*/
+			.input-group{
+				display: none;
+			}
+			/*可以设置display或者height实现效果！*/
+			.text{
+				/*display: none;*/
+				height: 0;
+			}
+			.input-group:checked + .text{
+				/*display: block;*/
+				height: auto;
+				padding: 10px;
+            	border-top: 1px solid #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="ban">
+				<label for="inp1">Collapsible Group Item #1</label>
+				<input type="radio" name="one" class="input-group" id="inp1" value="" />
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error consequatur, veniam ipsa perspiciatis at aspernatur sit saepe possimus architecto praesentium cumque, ducimus? Possimus tenetur hic magni porro, quisquam, debitis ea!</p>
+				</div>
+			</div>
+			
+			<div class="ban">
+				<label for="inp2">Collapsible Group Item #2</label>
+				<input type="radio" name="one" class="input-group" id="inp2" value="" />
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error consequatur, veniam ipsa perspiciatis at aspernatur sit saepe possimus architecto praesentium cumque, ducimus? Possimus tenetur hic magni porro, quisquam, debitis ea!</p>
+				</div>
+			</div>
+			
+			<div class="ban">
+				<label for="inp3">Collapsible Group Item #3</label>
+				<input type="radio" name="one" class="input-group" id="inp3" value="" />
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error consequatur, veniam ipsa perspiciatis at aspernatur sit saepe possimus architecto praesentium cumque, ducimus? Possimus tenetur hic magni porro, quisquam, debitis ea!</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
