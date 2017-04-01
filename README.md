@@ -38,16 +38,16 @@
 
 #######################################################################################
 
-**Two. Business platform**
+**Two. Business_platform**
 
     02tag_box
 
 
 **02tag_box**
 
->  代码地址https://github.com/gittig11/Baidu-IFE-2017/blob/master/Business platform/02/index.html
+>  代码地址https://github.com/gittig11/Baidu-IFE-2017/blob/master/Business_platform/02tag_box/index.html
 
->  预览地址https://gittig11.github.io/Baidu-IFE-2017/Business platform/02/index.html
+>  预览地址https://gittig11.github.io/Baidu-IFE-2017/Business_platform/02tag_box/index.html
 
 
 
