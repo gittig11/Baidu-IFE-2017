@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0; padding: 0;}
+			body{
+				font: 25px/25px "微软雅黑";
+			}
+			.container{
+				margin: 50px auto;
+				display: block;
+				width: 500px;
+				line-height: 50px;
+			}
+			
+			/*隐藏原来的checkbox和radio，使用图片*/
+			input[type="checkbox"], input[type="radio"] {
+			    display: none;
+			}
+			
+			/*未勾选时的样式*/
+			.checkbox_1 + i, .checkbox_2 + i{
+				background: url(http://wx4.sinaimg.cn/mw690/e42e0766gy1fe733h2xmzj202s00pa9u.jpg) no-repeat;
+				width: 25px;
+				height: 25px;
+				display: inline-block; /*同一行内显示*/
+			}
+			/*勾选时i的样式*/
+			.checkbox_1:checked + i{
+				background-position: -25px 0;
+			}
+			.checkbox_2:checked + i{
+				background-position: -25px 0;
+			}
+			
+			
+			.radio_1 + i,.radio_2 + i{
+				background: url(http://wx4.sinaimg.cn/mw690/e42e0766gy1fe733h2xmzj202s00pa9u.jpg) no-repeat;
+				width: 25px;
+				height: 25px;
+				display: inline-block;
+				background-position: -75px 0;
+			}
+			.radio_1:checked + i{
+				background-position: -50px 0;
+			}
+			.radio_2:checked + i{
+				background-position: -50px 0;
+			}
+		</style>
+	</head>
+	<body>
+	<div class="container">
+		<span>爱好：</span>
+		<label for="checkbox_1">
+			coding
+			<input type="checkbox" class="checkbox_1" id="checkbox_1" />
+			<i></i>
+		</label>
+		<label for="checkbox_2">
+			running
+			<input type="checkbox" class="checkbox_2" id="checkbox_2" />
+			<i></i>
+		</label>
+		<br />
+		
+		<span>性别：</span>
+		<label for="radio_1">
+			man
+			<input type="radio" class="radio_1" id="radio_1" name="sex" />
+			<!--checked="checked"-->
+			<i></i>
+		</label>
+		<label for="radio_2">
+			woman
+			<input type="radio" class="radio_2" id="radio_2" name="sex" />
+			<i></i>
+		</label>
+	</div>
+	</body>
+</html>
