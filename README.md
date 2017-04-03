@@ -8,7 +8,10 @@
     CSS3_Pie_loading_Effect
     Regexp
     douban_FM
-    checkbox-radio_style
+    
+    **douban_FM_2**
+    
+    checkbox-radio_style
     css_folded_panel
     oncontextmenu
 
@@ -50,6 +53,15 @@
 >代码地址[https://github.com/gittig11/Baidu-IFE-2017/blob/master/Nuomi/douban_FM/index.html](https://github.com/gittig11/Baidu-IFE-2017/blob/master/Nuomi/douban_FM/index.html)
 
 >预览地址[https://gittig11.github.io/Baidu-IFE-2017/Nuomi/douban_FM/index.html](https://gittig11.github.io/Baidu-IFE-2017/Nuomi/douban_FM/index.html)
+
+
+**douban_FM_2**
+
+>提交时间 2017-04-03
+
+>代码地址[https://github.com/gittig11/Baidu-IFE-2017/blob/master/Nuomi/douban_FM_2/index.html](https://github.com/gittig11/Baidu-IFE-2017/blob/master/Nuomi/douban_FM_2/index.html)
+
+>预览地址[https://gittig11.github.io/Baidu-IFE-2017/Nuomi/douban_FM_2/index.html](https://gittig11.github.io/Baidu-IFE-2017/Nuomi/douban_FM_2/index.html)
 
 
 **checkbox-radio_style**
